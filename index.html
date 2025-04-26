@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Tu tienda de tecnología</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#1E40AF',
+                        dark: '#1E293B',
+                        light: '#F1F5F9'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Barra de navegación -->
+    <nav class="bg-dark text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-laptop text-primary text-2xl"></i>
+                    <span class="font-bold text-xl">TechStore</span>
+                </div>
+                
+                <!-- Navegación principal - Escritorio -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="hover:text-primary transition duration-300">Inicio</a>
+                    <a href="#productos" class="hover:text-primary transition duration-300">Productos</a>
+                    <a href="#" class="hover:text-primary transition duration-300">Sobre Nosotros</a>
+                    <a href="#" class="hover:text-primary transition duration-300">Contacto</a>
+                </div>
+                
+                <!-- Carrito y búsqueda -->
+                <div class="flex items-center space-x-4">                    
+                    <!-- Carrito -->
+                    <button id="cart-button" class="relative">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </button>
+                    
+                    <!-- Botón de menú móvil -->
+                    <button id="mobile-menu-button" class="md:hidden text-xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Menú móvil (oculto por defecto) -->
+            <div id="mobile-menu" class="md:hidden hidden pb-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="#" class="hover:text-primary transition duration-300">Inicio</a>
+                    <a href="#productos" class="hover:text-primary transition duration-300">Productos</a>
+                    <a href="#" class="hover:text-primary transition duration-300">Sobre Nosotros</a>
+                    <a href="#" class="hover:text-primary transition duration-300">Contacto</a>
+                    <!-- Búsqueda móvil -->
+                    <div class="relative mt-2">
+                        <input type="text" placeholder="Buscar productos..." 
+                            class="w-full bg-gray-700 rounded-full py-2 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                        <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner principal -->
+    <div class="bg-gradient-to-r from-dark to-secondary text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Tecnología de Última Generación</h1>
+                    <p class="text-lg mb-6">Descubre nuestra selección de laptops y componentes para PC con las mejores ofertas del mercado.</p>
+                    <div class="flex space-x-4">
+                        <a href="#productos" class="bg-primary hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 inline-block">
+                            Ver Productos
+                        </a>
+                        <a href="#" class="bg-transparent border-2 border-white hover:bg-white hover:text-dark font-bold py-3 px-6 rounded-lg transition duration-300 inline-block">
+                            Ofertas Especiales
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1168&q=80" 
+                        alt="Laptop moderna" class="rounded-lg shadow-xl">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Categorías -->
+    <div class="container mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold text-center mb-8">Categorías Principales</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Categoría Laptops -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300">
+                <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                    alt="Laptops" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Laptops</h3>
+                    <p class="text-gray-600 mb-4">Portátiles para gaming, trabajo y uso diario con las mejores especificaciones.</p>
+                    <button class="category-btn" data-category="laptops">
+                        <a href="#productos" class="text-primary font-semibold hover:text-secondary">Ver laptops →</a>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Categoría Periféricos -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300">
+                <img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                    alt="Periféricos" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Periféricos</h3>
+                    <p class="text-gray-600 mb-4">Teclados, ratones, auriculares y más para mejorar tu experiencia.</p>
+                    <button class="category-btn" data-category="perifericos">
+                        <a href="#productos" class="text-primary font-semibold hover:text-secondary">Ver periféricos →</a>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Categoría Componentes -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300">
+                <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                    alt="Componentes" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Componentes</h3>
+                    <p class="text-gray-600 mb-4">Tarjetas gráficas, procesadores, memorias y todo para armar tu PC.</p>
+                    <button class="category-btn" data-category="componentes">
+                        <a href="#productos" class="text-primary font-semibold hover:text-secondary">Ver componentes →</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Productos Destacados -->
+    <div id="productos" class="bg-gray-100 py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Productos Destacados</h2>
+            
+            <!-- Filtros -->
+            <div class="mb-8 flex flex-wrap justify-center gap-4">
+                <button class="filter-btn active bg-primary text-white py-2 px-6 rounded-full hover:bg-secondary transition duration-300" data-filter="todos">
+                    Todos
+                </button>
+                <button class="filter-btn bg-white text-dark py-2 px-6 rounded-full hover:bg-primary hover:text-white transition duration-300" data-filter="laptops">
+                    Laptops
+                </button>
+                <button class="filter-btn bg-white text-dark py-2 px-6 rounded-full hover:bg-primary hover:text-white transition duration-300" data-filter="perifericos">
+                    Periféricos
+                </button>
+                <button class="filter-btn bg-white text-dark py-2 px-6 rounded-full hover:bg-primary hover:text-white transition duration-300" data-filter="componentes">
+                    Componentes
+                </button>
+            </div>
+            
+            <!-- Buscador de productos -->
+            <div class="mb-8 max-w-md mx-auto">
+                <div class="relative">
+                    <input type="text" id="product-search" placeholder="Buscar productos..." 
+                        class="w-full bg-white border border-gray-300 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary">
+                    <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Grid de productos -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="products-container">
+                <!-- Los productos se cargarán dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Banner de ofertas -->
+    <div class="bg-primary text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">¡Ofertas Especiales!</h2>
+            <p class="text-xl mb-6">Suscríbete a nuestro boletín y recibe un 10% de descuento en tu primera compra</p>
+            <div class="max-w-md mx-auto flex flex-col sm:flex-row gap-2">
+                <input type="email" placeholder="Tu correo electrónico" class="flex-grow py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <button class="bg-white text-primary font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition duration-300">
+                    Suscribirse
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Columna 1: Sobre nosotros -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">TechStore</h3>
+                    <p class="text-gray-400 mb-4">Tu tienda de confianza para todo lo relacionado con tecnología y componentes para PC.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Columna 2: Enlaces rápidos -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Enlaces Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Inicio</a></li>
+                        <li><a href="#productos" class="text-gray-400 hover:text-white transition duration-300">Productos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Sobre Nosotros</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Columna 3: Categorías -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Categorías</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Laptops</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Periféricos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Componentes</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Monitores</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Accesorios</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Columna 4: Contacto -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contacto</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-primary"></i>
+                            <span class="text-gray-400">Av. Tecnológica 123, Ciudad Tech</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-phone mt-1 text-primary"></i>
+                            <span class="text-gray-400">+123 456 7890</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-envelope mt-1 text-primary"></i>
+                            <span class="text-gray-400">info@techstore.com</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-clock mt-1 text-primary"></i>
+                            <span class="text-gray-400">Lun-Vie: 9am - 8pm<br>Sáb: 10am - 6pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="border-gray-800 my-8">
+            
+            <!-- Copyright -->
+            <div class="text-center text-gray-500">
+                <p>&copy; 2025 TechStore. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de detalle de producto (oculto por defecto) -->
+    <div id="product-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6" id="modal-content">
+                <!-- El contenido del modal se cargará dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrito de compras (oculto por defecto) -->
+    <div id="shopping-cart" class="fixed inset-y-0 right-0 max-w-md w-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50">
+        <div class="flex flex-col h-full">
+            <div class="flex justify-between items-center p-4 border-b">
+                <h2 class="text-xl font-bold">Carrito de Compras</h2>
+                <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="flex-grow overflow-y-auto p-4" id="cart-items">
+                <!-- Los items del carrito se cargarán dinámicamente -->
+                <div class="text-center text-gray-500 py-8" id="empty-cart-message">
+                    <i class="fas fa-shopping-cart text-4xl mb-4"></i>
+                    <p>Tu carrito está vacío</p>
+                </div>
+            </div>
+            
+            <div class="border-t p-4">
+                <div class="flex justify-between text-lg font-bold mb-4">
+                    <span>Total:</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button id="checkout-btn" class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-secondary transition duration-300">
+                    Contactar por WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>
